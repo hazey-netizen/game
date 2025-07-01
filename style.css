@@ -1,38 +1,75 @@
+/* Body & text styling with classic night-time sky */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #ffe6f0;
-    color: #d63384;
-    margin: 0;
-    padding: 1rem;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 1rem;
+  color: #f0e9ff;
+  background: linear-gradient(to bottom, #0b3d91, #000011);
+  position: relative;
+  overflow-x: hidden;
 }
 
+/* Animated star field overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: transparent url('https://raw.githubusercontent.com/joshbader/starry-night/master/images/stars.png') repeat;
+  z-index: -1;
+  animation: moveStars 200s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to { background-position: 10000px 5000px; }
+}
+
+/* Headings */
 h1 {
-    font-size: 2rem;
+  font-size: 2rem;
+  text-shadow: 0 0 10px #a0c1ff;
+  margin-bottom: 0.5rem;
 }
 
+/* Game area */
 #gameArea {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    height: 500px;
-    margin: 1rem auto;
-    background-color: #fff0f5;
-    border: 2px solid #d63384;
-    overflow: hidden;
-    border-radius: 10px;
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  margin: 1rem auto;
+  background-color: rgba(0,0,40,0.7);
+  border: 2px solid #5a86e5;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px #5a86e5;
 }
 
+/* Basket */
 #basket {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2.5rem;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  user-select: none;
+  color: #cce4ff;
 }
 
+/* Hearts */
 .heart {
-    position: absolute;
-    font-size: 2rem;
-    color: red;
+  position: absolute;
+  font-size: 2.5rem;
+  color: #ff4d6d;
+  animation: twinkle 2s infinite alternate ease-in-out;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Twinkling animation */
+@keyframes twinkle {
+  0% { filter: brightness(1) drop-shadow(0 0 5px #ff4d6d); }
+  100% { filter: brightness(1.5) drop-shadow(0 0 12px #ff85a2); }
 }
